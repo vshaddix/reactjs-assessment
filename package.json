@@ -32,5 +32,9 @@
     "babel-jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "@babel/core": "*"
-  }
+  },
+  "main": "src/index.js",
+  "repository": "https://github.com/vshaddix/reactjs-assessment.git",
+  "author": "Vasil Shaddix <vasilshaddixx@gmail.com>",
+  "license": "MIT"
 }
