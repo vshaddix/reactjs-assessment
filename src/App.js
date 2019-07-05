@@ -62,6 +62,8 @@ class App extends Component {
       this.setState({
         autoCompleteCities: this.state.cities
       });
+
+      return;
     }
 
     this.setState({
