@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import OpenAQService from './services/OpenAQService';
 
 import CitiesList from './components/CitiesList/CitiesList';
+import CityCard from './components/CityCard/CityCard';
 import AutoComplete from './components/AutoCompleteSelect/AutoCompleteSelect';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     this.state = {
       cities: [],
       autoCompleteCities: [],
+      selectedCity: null,
     };
 
     this.onCityAutocompleteInput = this.onCityAutocompleteInput.bind(this);
@@ -24,15 +26,19 @@ class App extends Component {
       cities = await this.openAQService.getCities({ limit: cities.meta.found });
     }
 
+    let id = 0;
+    cities = cities.results.map(res => { return { ...res, id: ++id, text: res.city } });
     this.setState({
-      cities: cities.results,
-      autoCompleteCities: cities.results
+      cities,
+      autoCompleteCities: cities
     });
   }
 
   getSuggestedCities(inputtedValue) {
     if (! inputtedValue) {
-      return this.state.cities;
+      this.setState({
+        autoCompleteCities: this.state.cities
+      });
     }
 
     this.setState({
@@ -44,8 +50,11 @@ class App extends Component {
     this.getSuggestedCities(inputtedValue);
   }
 
-  //TODO
-  onCitySelect() {}
+  onCitySelect(value) {
+    this.setState({
+      selectedCity: this.state.cities.find(city => city.id === parseInt(value))
+    });
+  }
 
   render() {
     const bodyStyle = {
@@ -54,17 +63,27 @@ class App extends Component {
       paddingTop: '3%',
     };
 
-    const autoCompleteCities = Array.from(new Set(this.state.autoCompleteCities.map(city => city.city)));
-
+    const selectedCity = this.state.selectedCity ? (
+      <div>
+        <CityCard
+          key={this.state.selectedCity.id}
+          city={this.state.selectedCity.city}
+          country={this.state.selectedCity.country}
+        />
+        <hr/>
+      </div>
+    ) : '';
+    
     return (
       <div className="App" style={bodyStyle}>
         <AutoComplete
-          values={autoCompleteCities}
+          values={this.state.autoCompleteCities}
           onInput={this.onCityAutocompleteInput}
           onSelect={this.onCitySelect}
           placeholder="city"
         />
         <hr/>
+        {selectedCity}
         <CitiesList cities={this.state.cities} />
       </div>
     );

@@ -6,14 +6,13 @@ class MeasurementsService extends OpenAQService {
    *
    * @param city
    * @param country
+   * @param allMeasurements
    * @return {Promise.<TResult>}
    */
-  getMeasurementsForACity(city, country) {
-    const allowedParameters = this._allowedParameters;
-
+  getMeasurementsForACity(city, country, allMeasurements = this._allowedParameters ) {
 
     const promises = [];
-    allowedParameters.forEach(parameter => {
+    allMeasurements.forEach(parameter => {
       promises.push(this.getMeasurements({ city, country, parameter }));
     });
 
@@ -34,7 +33,7 @@ class MeasurementsService extends OpenAQService {
         })
       });
 
-      allowedParameters.forEach(parameter => {
+      allMeasurements.forEach(parameter => {
         if(! foundMeasures.has(parameter)) {
           result.push({
             parameter: parameter,
