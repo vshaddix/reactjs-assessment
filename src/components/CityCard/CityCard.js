@@ -11,12 +11,26 @@ class CityCard extends Component {
     this.state = {
       city: props.city,
       country: props.country,
+      parametersToDisplay: props.parametersToDisplay,
       measurements: null
     };
   }
 
   componentDidMount() {
-    this.measurementsService.getMeasurementsForACity(this.state.city, this.state.country).then(result => {
+    this._getMeasurementsForTheCity();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.parametersToDisplay !== this.props.parametersToDisplay) {
+      this.setState({
+        parametersToDisplay: this.props.parametersToDisplay,
+        measurements: null,
+      }, this._getMeasurementsForTheCity)
+    }
+  }
+
+  _getMeasurementsForTheCity() {
+    this.measurementsService.getMeasurementsForACity(this.state.city, this.state.country, this.state.parametersToDisplay).then(result => {
       this.setState({
         measurements: result,
       });

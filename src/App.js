@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import OpenAQService from './services/OpenAQService';
+import config from './config/environment';
 
 import CitiesList from './components/CitiesList/CitiesList';
 import CityCard from './components/CityCard/CityCard';
@@ -13,6 +14,7 @@ class App extends Component {
     this.state = {
       cities: [],
       autoCompleteCities: [],
+      filteredParameters: config.allowedParameters,
       selectedCity: null,
     };
 
@@ -56,6 +58,24 @@ class App extends Component {
     });
   }
 
+  onParametersChange(event) {
+    const selectedParameters = [...event.target.children]
+      .filter(option => option.selected)
+      .map(option => option.value);
+
+    if (selectedParameters.includes('all')) {
+      this.setState({
+        filteredParameters: config.allowedParameters
+      });
+
+      return;
+    }
+
+    this.setState({
+      filteredParameters: selectedParameters
+    });
+  }
+
   render() {
     const bodyStyle = {
       marginLeft: '5%',
@@ -69,11 +89,14 @@ class App extends Component {
           key={this.state.selectedCity.id}
           city={this.state.selectedCity.city}
           country={this.state.selectedCity.country}
+          parametersToDisplay={this.state.filteredParameters}
         />
         <hr/>
       </div>
     ) : '';
-    
+
+    const parametersOptions = config.allowedParameters.map(param => <option key={param} value={param}>{param}</option>)
+
     return (
       <div className="App" style={bodyStyle}>
         <AutoComplete
@@ -83,8 +106,19 @@ class App extends Component {
           placeholder="city"
         />
         <hr/>
+        <div>
+          <label htmlFor="">Filter parameters.</label>
+          <select onChange={e => this.onParametersChange(e)} style={{width:"200px", height:"150px"}} name="" multiple id="">
+            <option key="all" value="all">All</option>
+            {parametersOptions}
+          </select>
+          <hr/>
+        </div>
         {selectedCity}
-        <CitiesList cities={this.state.cities} />
+        <CitiesList
+          cities={this.state.cities}
+          parametersToDisplay={this.state.filteredParameters}
+        />
       </div>
     );
   }
