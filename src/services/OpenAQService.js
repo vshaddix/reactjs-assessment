@@ -26,7 +26,7 @@ class OpenAQService extends BaseService {
         this._validateParameterForMeasurements(queryParameters.parameter);
       }
     }
-    
+
     return this._query(this._measurementsUrl, queryParameters);
   }
 
@@ -67,7 +67,7 @@ class OpenAQService extends BaseService {
    */
   _validateParameterForMeasurements(parameter) {
     if (!this._allowedParameters.includes(parameter))
-      throw new Error(`You have included a filter by parameter which is not allowed (${parameter}) `);
+      throw new Error(`You have included a filter by parameter which is not allowed (${parameter})`);
 
     return true;
   }
