@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders (snapshot test) 1`] = `
+<div
+  class="ui loader"
+/>
+`;
+
+exports[`renders correctly when a count is passed 1`] = `
+<div
+  className="ui cards"
+>
+  <div
+    className="ui card"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Sofiq
+      </div>
+    </div>
+    <div
+      className="content"
+    >
+      <h4
+        className="ui sub header"
+      >
+        Measurements
+      </h4>
+      <div
+        className="ui placeholder"
+      >
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly when at least one object with city and country are passed 1`] = `
+<div
+  className="ui cards"
+>
+  <div
+    className="ui card"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Sofiq
+      </div>
+    </div>
+    <div
+      className="content"
+    >
+      <h4
+        className="ui sub header"
+      >
+        Measurements
+      </h4>
+      <div
+        className="ui placeholder"
+      >
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="ui card"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Plovediv
+      </div>
+    </div>
+    <div
+      className="content"
+    >
+      <h4
+        className="ui sub header"
+      >
+        Measurements
+      </h4>
+      <div
+        className="ui placeholder"
+      >
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+        <div
+          className="line"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
