@@ -1,6 +1,13 @@
 import OpenAQService from "./OpenAQService";
 
 class MeasurementsService extends OpenAQService {
+  /**
+   * Returns an array of objects. For each measurement available and the corresponding data for the passed city.
+   *
+   * @param city
+   * @param country
+   * @return {Promise.<TResult>}
+   */
   getMeasurementsForACity(city, country) {
     const allowedParameters = this._allowedParameters;
 

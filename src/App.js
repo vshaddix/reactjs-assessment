@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import OpenAQService from './services/OpenAQService';
-import MeasurementsService from './services/MeasurementsService';
 
-import CityCard from './components/CityCard/CityCard';
+import CitiesList from './components/CitiesList/CitiesList';
 
 class App extends Component {
   constructor() {
     super();
 
     this.openAQService = new OpenAQService();
-    this.measurementsService = new MeasurementsService();
     this.state = {
       cities: [],
-      displayCities: [],
     };
   }
 
@@ -34,21 +31,9 @@ class App extends Component {
       paddingTop: '3%',
     };
 
-    const size = 20;
-    const items = this.state.cities.slice(0, size).map(city => {
-      return (
-        <CityCard
-          key={city.city + city.country}
-          city={city.city}
-          country={city.country}
-        />
-      );
-    });
     return (
       <div className="App" style={bodyStyle}>
-        <div className="ui cards">
-          {items}
-        </div>
+        <CitiesList cities={this.state.cities} />
       </div>
     );
   }
