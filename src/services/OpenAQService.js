@@ -28,6 +28,16 @@ class OpenAQService extends BaseService {
   }
 
   /**
+   *
+   * @param lat
+   * @param lon
+   * @return {Promise}
+   */
+  getNearestCityByCoordinates(lat, lon) {
+    return this._query(this._locationUrl, { coordinates: `${lat},${lon}`, limit: 1, nearest: ''});
+  }
+
+  /**
    * Returns the `cities` module base url used in the OpenAQ API.
    *
    * @return {string}
@@ -43,8 +53,8 @@ class OpenAQService extends BaseService {
    * @return {string}
    * @private
    */
-  get _latestUrl() {
-    return `${this.apiBaseUrl}/latest`;
+  get _locationUrl() {
+    return `${this.apiBaseUrl}/locations`;
   }
 
   /**

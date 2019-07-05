@@ -10,6 +10,7 @@ class App extends Component {
   constructor() {
     super();
 
+
     this.openAQService = new OpenAQService();
     this.state = {
       cities: [],
@@ -33,6 +34,18 @@ class App extends Component {
     this.setState({
       cities,
       autoCompleteCities: cities
+    });
+
+    navigator.geolocation.getCurrentPosition(async position => {
+      const results = await this.openAQService.getNearestCityByCoordinates(position.coords.latitude, position.coords.longitude);
+
+      if (results.results.length) {
+        const nearest = results.results[0];
+        const city = this.state.cities.find(city => city.city === nearest.city && city.country === nearest.country);
+        this.setState({
+          selectedCity: city
+        });
+      }
     });
   }
 
