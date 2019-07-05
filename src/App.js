@@ -106,6 +106,7 @@ class App extends Component {
 
     const selectedCity = this.state.selectedCity ? (
       <div>
+        <div>Selected city information</div>
         <CityCard
           key={this.state.selectedCity.id}
           city={this.state.selectedCity.city}
