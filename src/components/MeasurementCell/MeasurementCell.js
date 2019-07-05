@@ -7,7 +7,7 @@ export default ({ parameter, unit, value }) => {
     return <LoadingContent linesCount={1} />;
   }
 
-  const displayValue = !value ? (<span>No value recorded</span>) : (<span>{value} {unit}</span>);
+  const displayValue = !value ? (<span>-</span>) : (<span>{value} {unit}</span>);
 
   return (
     <div>
