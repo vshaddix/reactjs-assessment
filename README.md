@@ -25,6 +25,10 @@ If you wish to create manual build, you could run `yarn build`
 
 - [ ] Check on every request if the API limit is reached and display an error page.
 - [ ] Remove the `Load more` button and replace it with lazy rendering
+- [ ] This could be reworked with redux in order to achieve the following ideas (redux is not mandatory, but it could become more easily maintainable):
+[ ] Create a custom page for a single city and display multiple measurements for a single parameter.
+[ ] Add some charts for the measurements
+[ ] Filter the measurements by dates.
 
 ## Technical dept
 - [ ] A lot of tests are missing currently (Unit and Snapshot).
