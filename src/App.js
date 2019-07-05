@@ -1,40 +1,54 @@
 import React, { Component } from "react";
 import OpenAQService from './services/OpenAQService';
+import MeasurementsService from './services/MeasurementsService';
 
-import MeasurementCell from './components/MeasurementCell/MeasurementCell';
+import CityCard from './components/CityCard/CityCard';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { cities: [], singleMeasurements: { parameter: null, value: null, unit: null } };
+
+    this.openAQService = new OpenAQService();
+    this.measurementsService = new MeasurementsService();
+    this.state = {
+      cities: [],
+      displayCities: [],
+    };
   }
 
   async componentDidMount() {
-    const service = new OpenAQService();
-
-    let cities = await service.getCities();
+    let cities = await this.openAQService.getCities();
     if (cities.meta && cities.meta.found > 100) {
-      cities = await service.getCities({ limit: cities.meta.found });
+      cities = await this.openAQService.getCities({ limit: cities.meta.found });
     }
 
-    const firstCity = cities.results[0];
-    const cityMeasurements = await service.getLatestMeasurements({ city: firstCity.city, country: firstCity.country});
     this.setState({
       cities: cities.results,
-      singleMeasurements: cityMeasurements.results[0].measurements[0]
     });
   }
 
   render() {
+    const bodyStyle = {
+      marginLeft: '20%',
+      marginRight: '20%',
+      paddingTop: '3%',
+    };
+
+    const size = 20;
+    const items = this.state.cities.slice(0, size).map(city => {
+      return (
+        <CityCard
+          key={city.city + city.country}
+          city={city.city}
+          country={city.country}
+        />
+      );
+    });
     return (
-      <div className="App">
-        <header className="App-header">
-          <MeasurementCell
-            parameter={this.state.singleMeasurements.parameter}
-            unit={this.state.singleMeasurements.unit}
-            value={this.state.singleMeasurements.value}
-          />
-        </header>
+      <div className="App" style={bodyStyle}>
+        <div>
+          {items}
+        </div>
       </div>
     );
   }
