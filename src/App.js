@@ -16,11 +16,13 @@ class App extends Component {
       cities: [],
       autoCompleteCities: [],
       filteredParameters: config.allowedParameters,
+      citiesCount: 20,
       selectedCity: null,
     };
 
     this.onCityAutocompleteInput = this.onCityAutocompleteInput.bind(this);
     this.onCitySelect = this.onCitySelect.bind(this);
+    this.loadMoreCities = this.loadMoreCities.bind(this);
   }
 
   async componentDidMount() {
@@ -46,6 +48,12 @@ class App extends Component {
           selectedCity: city
         });
       }
+    });
+  }
+
+  loadMoreCities() {
+    this.setState({
+      citiesCount: this.state.citiesCount + 20,
     });
   }
 
@@ -131,7 +139,10 @@ class App extends Component {
         <CitiesList
           cities={this.state.cities}
           parametersToDisplay={this.state.filteredParameters}
+          count={this.state.citiesCount}
         />
+        <hr/>
+        <button className="massive ui button" onClick={this.loadMoreCities}>Load more</button>
       </div>
     );
   }
