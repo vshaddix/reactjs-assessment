@@ -1,6 +1,8 @@
 import React from "react";
 
 export default ({ onInput, onSelect, values, placeholder }) => {
+  if (! values) return '';
+
   const options = values.map(value => <option key={value.id} value={value.id}>{value.text}</option>);
 
   return (

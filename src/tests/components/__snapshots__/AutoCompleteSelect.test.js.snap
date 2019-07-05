@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders (snapshot test) 1`] = `""`;
+
+exports[`renders correctly when values are passed 1`] = `
+<div>
+  <div
+    className="ui input"
+  >
+    <input
+      onInput={[Function]}
+      placeholder="Search for a undefined ..."
+      type="text"
+    />
+  </div>
+  <select
+    onChange={[Function]}
+    placeholder="Select undefined"
+  >
+    <option
+      value=""
+    >
+      Select 
+    </option>
+    <option
+      value={1}
+    >
+      1
+    </option>
+    <option
+      value={2}
+    >
+      2
+    </option>
+  </select>
+</div>
+`;
