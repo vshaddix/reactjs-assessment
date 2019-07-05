@@ -42,23 +42,39 @@ describe('OpenAQService tests', () => {
     expect(service._query).toHaveBeenCalledWith(service._measurementsUrl, params);
   });
 
-  describe('getMeasurements will throw error when', () => {
+  describe('the service will throw an error when', () => {
     const notAllowedParam = 'not allowed';
 
     beforeEach(() => {
       service._query = jest.fn();
     });
 
-    it('it is called with an array of parameters and only one is not allowed', () => {
-      expect(() => {
-        service.getMeasurements({ parameter: ['pm25', 'pm10', notAllowedParam]})
-      }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
+    describe('getMeasurements', () => {
+      it('is called with an array of parameters and only one is not allowed', () => {
+        expect(() => {
+          service.getMeasurements({ parameter: ['pm25', 'pm10', notAllowedParam]})
+        }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
+      });
+
+      it('is called with only one parameter and it is not allowed', () => {
+        expect(() => {
+          service.getMeasurements({ parameter: notAllowedParam})
+        }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
+      });
     });
 
-    it('it is called with only one parameter and it is not allowed', () => {
-      expect(() => {
-        service.getMeasurements({ parameter: notAllowedParam})
-      }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
+    describe('getLatestMeasurements', () => {
+      it('is called with an array of parameters and only one is not allowed', () => {
+        expect(() => {
+          service.getLatestMeasurements({ parameter: ['pm25', 'pm10', notAllowedParam]})
+        }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
+      });
+
+      it('is called with only one parameter and it is not allowed', () => {
+        expect(() => {
+          service.getLatestMeasurements({ parameter: notAllowedParam})
+        }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
+      });
     });
   });
 });

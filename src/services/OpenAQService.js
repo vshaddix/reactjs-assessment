@@ -20,14 +20,23 @@ class OpenAQService extends BaseService {
    */
   getMeasurements(queryParameters = {}) {
     if (queryParameters.parameter) {
-      if (typeof queryParameters.parameter === 'object') {
-        queryParameters.parameter.forEach(param => this._validateParameterForMeasurements(param));
-      } else {
-        this._validateParameterForMeasurements(queryParameters.parameter);
-      }
+      this._validateParametersForMeasurements(queryParameters.parameter);
     }
 
     return this._query(this._measurementsUrl, queryParameters);
+  }
+
+  /**
+   *
+   * @param queryParameters
+   * @return {Promise}
+   */
+  getLatestMeasurements(queryParameters = {}) {
+    if (queryParameters.parameter) {
+      this._validateParametersForMeasurements(queryParameters.parameter);
+    }
+
+    return this._query(this._latestUrl, queryParameters);
   }
 
   /**
@@ -38,6 +47,16 @@ class OpenAQService extends BaseService {
    */
   get _citiesUrl() {
     return `${this.apiBaseUrl}/cities`;
+  }
+
+  /**
+   * Returns the `latest` module base url used in the OpenAQ API.
+   *
+   * @return {string}
+   * @private
+   */
+  get _latestUrl() {
+    return `${this.apiBaseUrl}/latest`;
   }
 
   /**
@@ -68,6 +87,16 @@ class OpenAQService extends BaseService {
   _validateParameterForMeasurements(parameter) {
     if (!this._allowedParameters.includes(parameter))
       throw new Error(`You have included a filter by parameter which is not allowed (${parameter})`);
+
+    return true;
+  }
+
+  _validateParametersForMeasurements(parameters) {
+    if (typeof parameters === 'object') {
+      parameters.forEach(param => this._validateParameterForMeasurements(param));
+    } else {
+      this._validateParameterForMeasurements(parameters);
+    }
 
     return true;
   }

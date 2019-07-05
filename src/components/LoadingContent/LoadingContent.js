@@ -3,8 +3,8 @@ import React from "react";
 export default ({ linesCount = 1 }) => {
   const lines = [];
 
-  for(let x = 0; x < linesCount; x++) {
-    lines.push(<div className={"line"}/>);
+  for (let x = 0; x < linesCount; x++) {
+    lines.push(<div key={x} className={"line"}/>);
   }
 
   return (
