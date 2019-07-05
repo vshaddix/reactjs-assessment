@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders (snapshot test) 1`] = `
+<div
+  className="ui placeholder"
+>
+  <div
+    className="line"
+  />
+</div>
+`;
+
+exports[`renders the component correctly when passed N lines as argument 1`] = `
+<div
+  className="ui placeholder"
+>
+  <div
+    className="line"
+  />
+</div>
+`;

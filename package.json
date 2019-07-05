@@ -30,9 +30,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "*",
     "babel-jest": "^24.8.0",
     "jest-cli": "^24.8.0",
-    "@babel/core": "*"
+    "react-test-renderer": "^16.8.6"
   },
   "main": "src/index.js",
   "repository": "https://github.com/vshaddix/reactjs-assessment.git",

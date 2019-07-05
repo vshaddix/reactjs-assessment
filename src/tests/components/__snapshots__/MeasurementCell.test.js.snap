@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders (snapshot test) 1`] = `
+<div
+  className="ui placeholder"
+>
+  <div
+    className="line"
+  />
+</div>
+`;
+
+exports[`renders the component correctly when no value is passed 1`] = `
+<div>
+  <span>
+    test
+  </span>
+  : 
+  <span>
+    -
+  </span>
+</div>
+`;
+
+exports[`renders the component correctly when passed full data 1`] = `
+<div>
+  <span>
+    test
+  </span>
+  : 
+  <span>
+    21
+     
+    test-unit
+  </span>
+</div>
+`;
