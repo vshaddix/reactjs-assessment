@@ -62,19 +62,5 @@ describe('OpenAQService tests', () => {
         }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
       });
     });
-
-    describe('getLatestMeasurements', () => {
-      it('is called with an array of parameters and only one is not allowed', () => {
-        expect(() => {
-          service.getLatestMeasurements({ parameter: ['pm25', 'pm10', notAllowedParam]})
-        }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
-      });
-
-      it('is called with only one parameter and it is not allowed', () => {
-        expect(() => {
-          service.getLatestMeasurements({ parameter: notAllowedParam})
-        }).toThrowError(new Error(`You have included a filter by parameter which is not allowed (${notAllowedParam})`));
-      });
-    });
   });
 });

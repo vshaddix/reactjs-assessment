@@ -28,19 +28,6 @@ class OpenAQService extends BaseService {
   }
 
   /**
-   *
-   * @param queryParameters
-   * @return {Promise}
-   */
-  getLatestMeasurements(queryParameters = {}) {
-    if (queryParameters.parameter) {
-      this._validateParametersForMeasurements(queryParameters.parameter);
-    }
-
-    return this._query(this._latestUrl, queryParameters);
-  }
-
-  /**
    * Returns the `cities` module base url used in the OpenAQ API.
    *
    * @return {string}
