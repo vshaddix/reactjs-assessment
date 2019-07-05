@@ -37,6 +37,7 @@
   },
   "main": "src/index.js",
   "repository": "https://github.com/vshaddix/reactjs-assessment.git",
+  "homepage": "https://vshaddix.github.io/reactjs-assessment",
   "author": "Vasil Shaddix <vasilshaddixx@gmail.com>",
   "license": "MIT"
 }
