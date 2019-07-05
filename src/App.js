@@ -29,8 +29,8 @@ class App extends Component {
 
   render() {
     const bodyStyle = {
-      marginLeft: '20%',
-      marginRight: '20%',
+      marginLeft: '5%',
+      marginRight: '5%',
       paddingTop: '3%',
     };
 
@@ -46,7 +46,7 @@ class App extends Component {
     });
     return (
       <div className="App" style={bodyStyle}>
-        <div>
+        <div className="ui cards">
           {items}
         </div>
       </div>
