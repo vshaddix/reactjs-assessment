@@ -1,4 +1,5 @@
 import BaseService from './BaseService';
+import config from '../config/environment';
 
 /**
  * Class for communication with the OpenAQ Api.
@@ -74,7 +75,7 @@ class OpenAQService extends BaseService {
    *
    * @type {[string,string,string,string,string,string,string]}
    */
-  _allowedParameters = ['pm25', 'pm10', 'so2', 'no2', 'o3', 'co', 'bc'];
+  _allowedParameters = config.allowedParameters;
 
   /**
    * If the passed parameter is not found in the allowed parameters for the API, the function will throw an error.
